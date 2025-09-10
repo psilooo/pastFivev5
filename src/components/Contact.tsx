@@ -136,24 +136,8 @@ const Contact: React.FC = () => {
               <h3 className="font-bebas text-xl mb-2">EMAIL</h3>
               <a href="mailto:contact@portfolio.com" className="font-courier text-sm opacity-60 hover:opacity-100 transition-opacity flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
-                <span>CONTACT@PORTFOLIO.COM</span>
+                <span>contact@pastfivestudios.com</span>
               </a>
-            </div>
-
-            <div className="border border-white/20 p-6 hover:border-white/50 transition-all duration-500">
-              <h3 className="font-bebas text-xl mb-2">SOCIAL</h3>
-              <div className="space-y-2">
-                {['INSTAGRAM', 'TWITTER'].map((social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="font-courier text-sm opacity-60 hover:opacity-100 transition-opacity flex items-center space-x-2 group"
-                  >
-                    <span>@{social.toLowerCase()}</span>
-                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                ))}
-              </div>
             </div>
 
             <div className="border border-white/20 p-6 hover:border-white/50 transition-all duration-500">
