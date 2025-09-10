@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scrollbar-gutter: stable both-edges;
-}
-
 @layer base {
   body {
     @apply bg-black text-white overflow-x-hidden;
