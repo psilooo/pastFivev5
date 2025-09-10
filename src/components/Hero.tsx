@@ -30,7 +30,7 @@ const Hero: React.FC = () => {
           loop
           playsInline
           className="w-full h-full object-cover opacity-30"
-          style={{ filter: 'brightness(0.8) contrast(1.2)' }}
+          style={{ filter: 'grayscale(100%) brightness(0.8) contrast(1.2)' }}
         >
           <source src={videoUrl} type="video/mp4" />
           {/* Fallback for browsers that don't support video */}
