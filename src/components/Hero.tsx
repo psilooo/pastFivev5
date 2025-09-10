@@ -129,78 +129,70 @@ const Hero: React.FC = () => {
           )}
         </div>
 
-        {/* CLICKABLE / EXPANDABLE SERVICES */}
-        <div className="font-courier text-xs md:text-sm space-y-6 text-center">
-          {services.map((s) => {
-            const isOpen = openId === s.id;
-            return (
-              <div key={s.id} className="relative max-w-xl mx-auto">
-                {/* Title (centered, glow on hover, + inside brackets) */}
-                <button
-                  onClick={() => toggle(s.id)}
-                  aria-expanded={isOpen}
-                  className={[
-                    "w-full flex items-center justify-center",
-                    "opacity-70 transition-all duration-150 ease-out",
-                    "hover:opacity-100 hover:text-white",
-                    "hover:[text-shadow:0_0_10px_rgba(255,255,255,0.55)]",
-                    isOpen ? "text-white opacity-100" : "",
-                  ].join(" ")}
-                  style={{ letterSpacing: '0.02em' }}
-                >
-                  <span className="cursor-pointer select-none">
-                    <span>[ </span>
-                    <span>{s.label.replace(/\[|\]/g, '').trim()}</span>
-                    <span className="inline-flex items-center">
-                      {" "}
-                      <span
-                        className={[
-                          "ml-1 inline-block transform transition-transform duration-150",
-                          isOpen ? "rotate-45" : "rotate-0",
-                        ].join(" ")}
-                        aria-hidden="true"
-                      >
-                        +
+        {/* CLICKABLE / EXPANDABLE SERVICES (fixed-height, no layout shift) */}
+        <div className="relative w-full max-w-xl mx-auto font-courier text-xs md:text-sm text-center">
+          {/* Title list */}
+          <div className="space-y-4">
+            {services.map((s) => {
+              const isOpen = openId === s.id;
+              return (
+                <div key={s.id}>
+                  <button
+                    onClick={() => setOpenId(prev => (prev === s.id ? null : s.id))}
+                    aria-expanded={isOpen}
+                    className={[
+                      "w-full flex items-center justify-center",
+                      "opacity-70 transition-all duration-150 ease-out",
+                      "hover:opacity-100 hover:text-white",
+                      "hover:[text-shadow:0_0_10px_rgba(255,255,255,0.55)]",
+                      isOpen ? "text-white opacity-100" : "",
+                    ].join(" ")}
+                    style={{ letterSpacing: '0.02em' }}
+                  >
+                    <span className="cursor-pointer select-none">
+                      <span>[ </span>
+                      <span>{s.label.replace(/\[|\]/g, '').trim()}</span>
+                      <span className="inline-flex items-center">
+                        {" "}
+                        <span
+                          className={[
+                            "ml-1 inline-block transform transition-transform duration-150",
+                            isOpen ? "rotate-45" : "rotate-0",
+                          ].join(" ")}
+                          aria-hidden="true"
+                        >
+                          +
+                        </span>
+                        <span> ]</span>
                       </span>
-                      <span> ]</span>
                     </span>
-                  </span>
-                </button>
-        
-                {/* ABSOLUTE PANEL that visually drops down */}
-                <div
-                  className={[
-                    "absolute left-1/2 -translate-x-1/2",
-                    "top-[calc(100%+0.25rem)] w-full max-w-xl px-4 text-center z-30",
-                    "transition-all duration-200 ease-out",
-                    isOpen
-                      ? "opacity-100 translate-y-0 pointer-events-auto"
-                      : "opacity-0 -translate-y-2 pointer-events-none",
-                  ].join(" ")}
-                  style={{ willChange: 'opacity, transform' }}
-                >
-                  <div className="transform transition duration-200 ease-out">
-                    <p className="text-[0.8rem] md:text-[0.9rem] leading-relaxed text-white/80">
-                      {s.copy}
-                    </p>
-                  </div>
+                  </button>
                 </div>
+              );
+            })}
+          </div>
         
-                {/* SPACER reserves vertical space so nothing gets overlapped below */}
-                <div
-                  aria-hidden
-                  className={[
-                    "transition-all duration-200 ease-out",
-                    // match this height to your expected content height
-                    isOpen ? "max-h-40 mt-2" : "max-h-0",
-                    "overflow-hidden",
-                  ].join(" ")}
-                />
-              </div>
-            );
-          })}
+          {/* Reserved space so hero height NEVER changes */}
+          <div className="h-32 md:h-36" />
+        
+          {/* Shared reveal panel (absolutely positioned, expands ONLY down) */}
+          <div
+            className={[
+              "absolute left-1/2 -translate-x-1/2",
+              "top-[calc(100%-8rem)] md:top-[calc(100%-9rem)]", // aligns with the reserved space above
+              "w-full max-w-xl px-4 text-center z-30",
+              "transition-all duration-150 ease-out",
+              openId ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none",
+            ].join(" ")}
+            style={{ willChange: 'opacity, transform' }}
+          >
+            <div className="transform transition duration-150 ease-out">
+              <p className="text-[0.8rem] md:text-[0.9rem] leading-relaxed text-white/80">
+                {services.find(s => s.id === openId)?.copy}
+              </p>
+            </div>
+          </div>
         </div>
-
 
         <div className="mt-12 flex items-center justify-center space-x-8">
           <div className="text-xs font-courier">
