@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
   return (
     <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden">
       {/* Video Background - Lowest layer */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-11">
         <video
           autoPlay
           muted
