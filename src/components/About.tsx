@@ -73,17 +73,6 @@ const About: React.FC = () => {
           </div>{" "}
         </div>{" "}
       </div>{" "}
-      {/* Footer (fixed, static) */}
-      <footer className="fixed bottom-0 left-0 w-full z-30 bg-black/40 backdrop-blur-md border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-          <p className="font-courier text-xs opacity-70">
-            © 2025 PASTFIVE. ALL RIGHTS RESERVED.
-          </p>
-          <p className="font-courier text-xs opacity-70">
-            DESIGNED WITH CHAOS BY PSILO
-          </p>
-        </div>
-      </footer>
     </section>
   );
 };
