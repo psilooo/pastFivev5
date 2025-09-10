@@ -140,7 +140,7 @@ const Hero: React.FC = () => {
                   onClick={() => setOpenId(prev => (prev === s.id ? null : s.id))}
                   aria-expanded={isOpen}
                   className={[
-                    "w-full flex items-center justify-center",
+                    "inline-flex items-center justify-center",
                     "opacity-70 transition-all duration-200 ease-out",
                     "hover:opacity-100 hover:text-white",
                     "hover:[text-shadow:0_0_10px_rgba(255,255,255,0.55)]",
