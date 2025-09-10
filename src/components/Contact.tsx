@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Mail, Send, ExternalLink } from 'lucide-react';
 
+const FORM_ENDPOINT = 'https://formspree.io/f/mgvldrvb';
+
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -8,15 +10,47 @@ const Contact: React.FC = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<null | 'success' | 'error'>(null);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate form submission
-    setTimeout(() => {
+    setStatus(null);
+    setErrorMsg(null);
+
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,           // used as Reply-To by Formspree
+          message: formData.message,
+          _subject: 'New message from your site', // optional custom subject
+        }),
+      });
+
+      if (res.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        const data = await res.json().catch(() => null);
+        setStatus('error');
+        setErrorMsg(
+          data?.errors?.map((e: any) => e.message).join(', ') ||
+          'Something went wrong. Please try again.'
+        );
+      }
+    } catch {
+      setStatus('error');
+      setErrorMsg('Network error. Please check your connection and try again.');
+    } finally {
       setIsSubmitting(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 2000);
+    }
   };
 
   return (
@@ -30,10 +64,20 @@ const Contact: React.FC = () => {
           {/* Contact Form */}
           <div className="border border-white/20 p-8">
             <h3 className="font-bebas text-2xl mb-6">SEND MESSAGE</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              {/* Honeypot (spam trap) */}
+              <input
+                type="text"
+                name="_gotcha"
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+
               <div>
                 <input
                   type="text"
+                  name="name"
                   placeholder="NAME"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -44,6 +88,7 @@ const Contact: React.FC = () => {
               <div>
                 <input
                   type="email"
+                  name="email"
                   placeholder="EMAIL"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -53,6 +98,7 @@ const Contact: React.FC = () => {
               </div>
               <div>
                 <textarea
+                  name="message"
                   placeholder="MESSAGE"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -69,6 +115,18 @@ const Contact: React.FC = () => {
                 <span>{isSubmitting ? 'SENDING...' : 'SEND'}</span>
                 <Send className="w-4 h-4" />
               </button>
+
+              {/* Inline feedback */}
+              {status === 'success' && (
+                <p className="text-xs font-courier text-green-400/80 mt-2" role="status" aria-live="polite">
+                  Message sent. I’ll get back to you soon.
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="text-xs font-courier text-red-400/80 mt-2" role="alert" aria-live="assertive">
+                  {errorMsg}
+                </p>
+              )}
             </form>
           </div>
 
@@ -108,17 +166,18 @@ const Contact: React.FC = () => {
           </div>
         </div>
       </div>
-        {/* Footer (fixed, static) */}
-        <footer className="fixed bottom-0 left-0 w-full z-30 bg-black/40 backdrop-blur-md border-t border-white/10">
-          <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-            <p className="font-courier text-xs opacity-70">
-              © 2025 PASTFIVE. ALL RIGHTS RESERVED.
-            </p>
-            <p className="font-courier text-xs opacity-70">
-              DESIGNED WITH CHAOS BY PSILO
-            </p>
-          </div>
-        </footer>
+
+      {/* Footer (fixed, static) */}
+      <footer className="fixed bottom-0 left-0 w-full z-30 bg-black/40 backdrop-blur-md border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+          <p className="font-courier text-xs opacity-70">
+            © 2025 PASTFIVE. ALL RIGHTS RESERVED.
+          </p>
+          <p className="font-courier text-xs opacity-70">
+            DESIGNED WITH CHAOS BY PSILO
+          </p>
+        </div>
+      </footer>
     </section>
   );
 };
