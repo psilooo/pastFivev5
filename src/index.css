@@ -1,0 +1,312 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-white overflow-x-hidden;
+  }
+  
+  ::selection {
+    @apply bg-white text-black;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-black;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-white;
+  }
+}
+
+@layer utilities {
+  .text-stroke {
+    -webkit-text-stroke: 1px white;
+    text-stroke: 1px white;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+  }
+  
+  .text-stroke-2 {
+    -webkit-text-stroke: 2px white;
+    text-stroke: 2px white;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+  }
+  
+  /* Custom Cursor Glitch Effect */
+  .cursor-glitch {
+    animation: cursor-glitch 0.3s infinite;
+  }
+  
+  @keyframes cursor-glitch {
+    0%, 100% {
+      transform: translate(-50%, -50%) rotate(0deg);
+      border-color: white;
+    }
+    20% {
+      transform: translate(-52%, -48%) rotate(1deg);
+      border-color: rgba(255, 255, 255, 0.8);
+    }
+    40% {
+      transform: translate(-48%, -52%) rotate(-1deg);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+    60% {
+      transform: translate(-52%, -50%) rotate(0.5deg);
+      border-color: rgba(255, 255, 255, 0.9);
+    }
+    80% {
+      transform: translate(-50%, -48%) rotate(-0.5deg);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+  }
+  
+  /* Asterisk Animation Styles */
+  .asterisk-container {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .asterisk-main {
+    animation: asterisk-spin 8s linear infinite, asterisk-pulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  }
+  
+  @keyframes asterisk-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes asterisk-pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(0.95);
+    }
+  }
+  
+  .asterisk-orbit {
+    position: absolute;
+    color: white;
+    opacity: 0.4;
+    animation: orbit 3s linear infinite;
+  }
+  
+  .asterisk-orbit-1 {
+    animation-duration: 3s;
+    animation-delay: 0s;
+  }
+  
+  .asterisk-orbit-2 {
+    animation-duration: 4s;
+    animation-delay: 1s;
+  }
+  
+  .asterisk-orbit-3 {
+    animation-duration: 5s;
+    animation-delay: 2s;
+  }
+  
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg) translateX(20px) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.4;
+    }
+    90% {
+      opacity: 0.4;
+    }
+    to {
+      transform: rotate(360deg) translateX(20px) rotate(-360deg);
+      opacity: 0;
+    }
+  }
+  
+  /* Logo Glitch Animation - Fixed for images */
+  .logo-glitch {
+    position: relative;
+    animation: logo-shake 0.3s infinite;
+  }
+  
+  .logo-glitch::before,
+  .logo-glitch::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    background-size: inherit;
+    background-position: inherit;
+    background-repeat: inherit;
+    filter: invert(1);
+  }
+  
+  .logo-glitch::before {
+    animation: glitch-1 0.3s infinite;
+    z-index: -1;
+    mix-blend-mode: difference;
+    filter: invert(1) hue-rotate(90deg) brightness(1.5);
+  }
+  
+  .logo-glitch::after {
+    animation: glitch-2 0.3s infinite;
+    z-index: -2;
+    mix-blend-mode: exclusion;
+    filter: invert(1) hue-rotate(-90deg) brightness(0.8);
+  }
+  
+  @keyframes logo-shake {
+    0%, 100% {
+      transform: translate(0);
+      filter: invert(1) contrast(1);
+    }
+    20% {
+      transform: translate(-1px, 1px);
+      filter: invert(1) contrast(1.5) brightness(1.2);
+    }
+    40% {
+      transform: translate(-1px, -1px);
+      filter: invert(1) contrast(0.8) brightness(0.8);
+    }
+    60% {
+      transform: translate(1px, 1px);
+      filter: invert(1) contrast(1.2) brightness(1.1);
+    }
+    80% {
+      transform: translate(1px, -1px);
+      filter: invert(1) contrast(0.9) brightness(0.9);
+    }
+  }
+  
+  @keyframes glitch-1 {
+    0%, 100% {
+      clip-path: inset(0 0 0 0);
+      transform: translate(0);
+    }
+    20% {
+      clip-path: inset(20% 0 30% 0);
+      transform: translate(-2px, 0);
+    }
+    40% {
+      clip-path: inset(50% 0 20% 0);
+      transform: translate(2px, 0);
+    }
+    60% {
+      clip-path: inset(10% 0 60% 0);
+      transform: translate(-1px, 0);
+    }
+    80% {
+      clip-path: inset(70% 0 10% 0);
+      transform: translate(1px, 0);
+    }
+  }
+  
+  @keyframes glitch-2 {
+    0%, 100% {
+      clip-path: inset(0 0 0 0);
+      transform: translate(0);
+    }
+    20% {
+      clip-path: inset(60% 0 20% 0);
+      transform: translate(1px, 0);
+    }
+    40% {
+      clip-path: inset(10% 0 70% 0);
+      transform: translate(-1px, 0);
+    }
+    60% {
+      clip-path: inset(40% 0 40% 0);
+      transform: translate(2px, 0);
+    }
+    80% {
+      clip-path: inset(20% 0 60% 0);
+      transform: translate(-2px, 0);
+    }
+  }
+  
+  .glitch-text {
+    position: relative;
+  }
+  
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .glitch-text::before {
+    animation: glitch-1 0.5s infinite;
+    color: white;
+    z-index: -1;
+    mix-blend-mode: difference;
+  }
+  
+  .glitch-text::after {
+    animation: glitch-2 0.5s infinite;
+    color: white;
+    z-index: -2;
+    mix-blend-mode: exclusion;
+  }
+
+  .overlay-exempt {
+  position: relative; /* creates a positioned element so z-index applies */
+  z-index: 10050;     /* higher than .grain (9999) and .scanlines (9998) */
+  }
+  
+  .grain {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    width: 200%;
+    height: 200%;
+    background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgbnVtT2N0YXZlcz0iMTAiLz48ZmVDb2xvck1hdHJpeCB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDEgMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iLjAzIi8+PC9zdmc+') repeat;
+    pointer-events: none;
+    opacity: 0.03;
+    z-index: 9999;
+    animation: noise 0.2s infinite;
+  }
+  
+  .scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+    z-index: 9998;
+  }
+}

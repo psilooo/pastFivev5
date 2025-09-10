@@ -1,0 +1,8 @@
+/home/project/
+├── public/           ← Your logo.png goes here
+├── src/
+├── node_modules/
+├── index.html
+├── package.json
+├── vite.config.ts
+└── other files...
