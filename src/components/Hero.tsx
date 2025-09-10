@@ -167,17 +167,26 @@ const Hero: React.FC = () => {
                   </span>
                 </button>
         
-                {/* Expandable copy with FAST fade + blur */}
+                {/* Expandable copy: fast slide-down + fade + blur */}
                 <div
                   className={[
-                    "transition-all duration-150 ease-out overflow-hidden",
-                    isOpen ? "max-h-40 opacity-100 blur-0" : "max-h-0 opacity-0 blur-[2px]",
+                    "overflow-hidden transition-all duration-150 ease-out",
+                    isOpen ? "max-h-40" : "max-h-0",
                   ].join(" ")}
-                  style={{ willChange: 'opacity, filter, max-height' }}
                 >
-                  <p className="mt-2 text-[0.8rem] md:text-[0.9rem] leading-relaxed text-white/80 text-center">
-                    {s.copy}
-                  </p>
+                  {/* Motion wrapper handles opacity/blur/translate-Y */}
+                  <div
+                    className={[
+                      "px-2", // tiny pad so blur doesn't clip
+                      "transform transition duration-150 ease-out",
+                      isOpen ? "opacity-100 blur-0 translate-y-0" : "opacity-0 blur-[2px] -translate-y-2",
+                    ].join(" ")}
+                    style={{ willChange: 'opacity, filter, transform' }}
+                  >
+                    <p className="mt-2 text-[0.8rem] md:text-[0.9rem] leading-relaxed text-white/80 text-center">
+                      {s.copy}
+                    </p>
+                  </div>
                 </div>
               </div>
             );
