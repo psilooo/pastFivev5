@@ -2,12 +2,38 @@ import React, { useEffect, useState } from 'react';
 
 const Hero: React.FC = () => {
   const [glitchActive, setGlitchActive] = useState(false);
-  
-  // Replace this with your actual logo path
-  const logoUrl = '/logo.png'; // Place your logo in the public folder
-  
-  // Replace this with your actual video path
-  const videoUrl = '/background-video.mp4'; // Place your video in the public folder
+  const [openId, setOpenId] = useState<string | null>(null);
+
+  const logoUrl = '/logo.png';
+  const videoUrl = '/background-video.mp4';
+
+  // Service data (labels + copy)
+  const services = [
+    {
+      id: 'creative',
+      label: '[ CREATIVE DIRECTION ]',
+      copy:
+        "We don’t follow trends — we make them. Full creative vision, from concept to cult status. Moodboards, aesthetics, and narratives that hit different.",
+    },
+    {
+      id: 'graphic',
+      label: '[ GRAPHIC DESIGN ]',
+      copy:
+        "High-impact visuals, raw and unfiltered. Covers, flyers, merch — built to live in your head rent-free.",
+    },
+    {
+      id: 'motion',
+      label: '[ MOTION GRAPHICS ]',
+      copy:
+        "Loops that hypnotize. Glitch, grunge, and chaos made beautiful. Designed to make your audience stop scrolling.",
+    },
+    {
+      id: 'web',
+      label: '[ WEB DESIGN ]',
+      copy:
+        "Websites that bleed aesthetic. Minimal, dark, and heavy — built like a digital archive, not a template. Every pixel screams underground luxury. Responsive, fast, unforgettable — web design on vamp mode.",
+    },
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -16,9 +42,10 @@ const Hero: React.FC = () => {
         setTimeout(() => setGlitchActive(false), 300);
       }
     }, 2000);
-
     return () => clearInterval(interval);
   }, []);
+
+  const toggle = (id: string) => setOpenId(prev => (prev === id ? null : id));
 
   return (
     <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden">
@@ -33,14 +60,13 @@ const Hero: React.FC = () => {
           style={{ filter: 'grayscale(100%) brightness(0.8) contrast(1.2)' }}
         >
           <source src={videoUrl} type="video/mp4" />
-          {/* Fallback for browsers that don't support video */}
           <div className="w-full h-full bg-gradient-to-b from-gray-900 to-black" />
         </video>
       </div>
 
       {/* Dark overlay - Above video, below content */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black to-black opacity-40 pointer-events-none z-10" />
-      
+
       {/* Animated background lines - Above overlay */}
       <div className="absolute inset-0 z-20">
         {[...Array(10)].map((_, i) => (
@@ -73,8 +99,6 @@ const Hero: React.FC = () => {
               backgroundPosition: 'center',
             }}
           />
-          
-          {/* Additional glitch layers for more intense effect */}
           {glitchActive && (
             <>
               <div
@@ -104,12 +128,50 @@ const Hero: React.FC = () => {
             </>
           )}
         </div>
-        
-        <div className="font-courier text-xs md:text-sm space-y-1 opacity-60 animate-pulse">
-          <p>[ CREATIVE DIRECTION ]</p>
-          <p>[ GRAPHIC DESIGN ]</p>
-          <p>[ MOTION GRAPHICS ]</p>
-          <p>[ WEB DESIGN ]</p>
+
+        {/* CLICKABLE / EXPANDABLE SERVICES */}
+        <div className="font-courier text-xs md:text-sm space-y-2">
+          {services.map((s) => {
+            const isOpen = openId === s.id;
+            return (
+              <div key={s.id} className="text-left max-w-xl mx-auto">
+                <button
+                  onClick={() => toggle(s.id)}
+                  aria-expanded={isOpen}
+                  className={[
+                    "w-full flex items-center justify-between",
+                    "opacity-70 transition-all duration-200",
+                    "hover:opacity-100 hover:text-white",
+                    "hover:[text-shadow:0_0_10px_rgba(255,255,255,0.55)]",
+                    isOpen ? "text-white opacity-100" : "",
+                  ].join(" ")}
+                  style={{ letterSpacing: '0.02em' }}
+                >
+                  <span className="cursor-pointer select-none">{s.label}</span>
+                  <span
+                    className={[
+                      "ml-3 transform transition-transform duration-200",
+                      isOpen ? "rotate-45" : "rotate-0",
+                    ].join(" ")}
+                  >
+                    +
+                  </span>
+                </button>
+
+                {/* Expandable copy */}
+                <div
+                  className={[
+                    "transition-all duration-300 overflow-hidden",
+                    isOpen ? "max-h-40 mt-2" : "max-h-0",
+                  ].join(" ")}
+                >
+                  <p className="text-[0.8rem] md:text-[0.9rem] leading-relaxed text-white/80">
+                    {s.copy}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         <div className="mt-12 flex items-center justify-center space-x-8">
@@ -124,7 +186,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Footer - Also above video */}
+      {/* Footer */}
       <div className="mt-16 pt-8 border-t border-white/10 relative z-30">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <p className="font-courier text-xs opacity-60">
