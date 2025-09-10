@@ -130,12 +130,12 @@ const Hero: React.FC = () => {
         </div>
 
         {/* CLICKABLE / EXPANDABLE SERVICES */}
-        <div className="font-courier text-xs md:text-sm space-y-6 text-center relative">
+        <div className="font-courier text-xs md:text-sm space-y-6 text-center">
           {services.map((s) => {
             const isOpen = openId === s.id;
             return (
               <div key={s.id} className="relative max-w-xl mx-auto">
-                {/* Clickable title */}
+                {/* Title (centered, glow on hover, + inside brackets) */}
                 <button
                   onClick={() => toggle(s.id)}
                   aria-expanded={isOpen}
@@ -167,26 +167,40 @@ const Hero: React.FC = () => {
                   </span>
                 </button>
         
-                {/* Expandable overlayed copy */}
+                {/* ABSOLUTE PANEL that visually drops down */}
                 <div
                   className={[
-                    "absolute left-1/2 transform -translate-x-1/2",
-                    "w-full max-w-xl text-center px-4",
+                    "absolute left-1/2 -translate-x-1/2",
+                    "top-[calc(100%+0.25rem)] w-full max-w-xl px-4 text-center z-30",
                     "transition-all duration-200 ease-out",
                     isOpen
-                      ? "opacity-100 translate-y-2 pointer-events-auto"
+                      ? "opacity-100 translate-y-0 pointer-events-auto"
                       : "opacity-0 -translate-y-2 pointer-events-none",
                   ].join(" ")}
                   style={{ willChange: 'opacity, transform' }}
                 >
-                  <p className="mt-2 text-[0.8rem] md:text-[0.9rem] leading-relaxed text-white/80">
-                    {s.copy}
-                  </p>
+                  <div className="transform transition duration-200 ease-out">
+                    <p className="text-[0.8rem] md:text-[0.9rem] leading-relaxed text-white/80">
+                      {s.copy}
+                    </p>
+                  </div>
                 </div>
+        
+                {/* SPACER reserves vertical space so nothing gets overlapped below */}
+                <div
+                  aria-hidden
+                  className={[
+                    "transition-all duration-200 ease-out",
+                    // match this height to your expected content height
+                    isOpen ? "max-h-40 mt-2" : "max-h-0",
+                    "overflow-hidden",
+                  ].join(" ")}
+                />
               </div>
             );
           })}
         </div>
+
 
         <div className="mt-12 flex items-center justify-center space-x-8">
           <div className="text-xs font-courier">
