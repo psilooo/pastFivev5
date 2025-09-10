@@ -48,7 +48,7 @@ const Hero: React.FC = () => {
   const toggle = (id: string) => setOpenId(prev => (prev === id ? null : id));
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden">
+    <section className="min-h-screen flex flex-col justify-start items-center pt-28 md:pt-36 relative overflow-hidden">
       {/* Video Background - Lowest layer */}
       <div className="absolute inset-0 z-11">
         <video
@@ -141,7 +141,7 @@ const Hero: React.FC = () => {
                   aria-expanded={isOpen}
                   className={[
                     "w-full flex items-center justify-center",
-                    "opacity-70 transition-all duration-150 ease-out",
+                    "opacity-70 transition-all duration-200 ease-out",
                     "hover:opacity-100 hover:text-white",
                     "hover:[text-shadow:0_0_10px_rgba(255,255,255,0.55)]",
                     isOpen ? "text-white opacity-100" : "",
@@ -155,7 +155,7 @@ const Hero: React.FC = () => {
                       {" "}
                       <span
                         className={[
-                          "ml-1 inline-block transform transition-transform duration-150",
+                          "ml-1 inline-block transform transition-transform duration-200",
                           isOpen ? "rotate-45" : "rotate-0",
                         ].join(" ")}
                         aria-hidden="true"
@@ -167,10 +167,10 @@ const Hero: React.FC = () => {
                   </span>
                 </button>
         
-                {/* In-flow content: expands directly under title */}
+                {/* In-flow content: expands directly under title and only moves what’s below */}
                 <div
                   className={[
-                    "overflow-hidden transition-[max-height,opacity,filter,transform] duration-150 ease-out",
+                    "overflow-hidden transition-[max-height,opacity,filter,transform] duration-250 ease-out",
                     isOpen ? "max-h-56 opacity-100 blur-0 translate-y-0" : "max-h-0 opacity-0 blur-[2px] -translate-y-1",
                   ].join(" ")}
                 >
