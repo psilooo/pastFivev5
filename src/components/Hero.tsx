@@ -130,16 +130,16 @@ const Hero: React.FC = () => {
         </div>
 
         {/* CLICKABLE / EXPANDABLE SERVICES */}
-        <div className="font-courier text-xs md:text-sm space-y-2">
+        <div className="font-courier text-xs md:text-sm space-y-4 text-center">
           {services.map((s) => {
             const isOpen = openId === s.id;
             return (
-              <div key={s.id} className="text-left max-w-xl mx-auto">
+              <div key={s.id} className="max-w-xl mx-auto">
                 <button
                   onClick={() => toggle(s.id)}
                   aria-expanded={isOpen}
                   className={[
-                    "w-full flex items-center justify-between",
+                    "w-full flex items-center justify-center",
                     "opacity-70 transition-all duration-150 ease-out",
                     "hover:opacity-100 hover:text-white",
                     "hover:[text-shadow:0_0_10px_rgba(255,255,255,0.55)]",
@@ -170,12 +170,12 @@ const Hero: React.FC = () => {
                 {/* Expandable copy with FAST fade + blur */}
                 <div
                   className={[
-                    "overflow-hidden transition-all duration-150",
+                    "transition-all duration-150 ease-out overflow-hidden",
                     isOpen ? "max-h-40 opacity-100 blur-0" : "max-h-0 opacity-0 blur-[2px]",
                   ].join(" ")}
                   style={{ willChange: 'opacity, filter, max-height' }}
                 >
-                  <p className="mt-2 text-[0.8rem] md:text-[0.9rem] leading-relaxed text-white/80">
+                  <p className="mt-2 text-[0.8rem] md:text-[0.9rem] leading-relaxed text-white/80 text-center">
                     {s.copy}
                   </p>
                 </div>
