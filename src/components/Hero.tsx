@@ -130,11 +130,12 @@ const Hero: React.FC = () => {
         </div>
 
         {/* CLICKABLE / EXPANDABLE SERVICES */}
-        <div className="font-courier text-xs md:text-sm space-y-4 text-center">
+        <div className="font-courier text-xs md:text-sm space-y-6 text-center relative">
           {services.map((s) => {
             const isOpen = openId === s.id;
             return (
-              <div key={s.id} className="max-w-xl mx-auto">
+              <div key={s.id} className="relative max-w-xl mx-auto">
+                {/* Clickable title */}
                 <button
                   onClick={() => toggle(s.id)}
                   aria-expanded={isOpen}
@@ -147,7 +148,6 @@ const Hero: React.FC = () => {
                   ].join(" ")}
                   style={{ letterSpacing: '0.02em' }}
                 >
-                  {/* Label with + inside the brackets */}
                   <span className="cursor-pointer select-none">
                     <span>[ </span>
                     <span>{s.label.replace(/\[|\]/g, '').trim()}</span>
@@ -167,26 +167,21 @@ const Hero: React.FC = () => {
                   </span>
                 </button>
         
-                {/* Expandable copy: fast slide-down + fade + blur */}
+                {/* Expandable overlayed copy */}
                 <div
                   className={[
-                    "overflow-hidden transition-all duration-150 ease-out",
-                    isOpen ? "max-h-40" : "max-h-0",
+                    "absolute left-1/2 transform -translate-x-1/2",
+                    "w-full max-w-xl text-center px-4",
+                    "transition-all duration-200 ease-out",
+                    isOpen
+                      ? "opacity-100 translate-y-2 pointer-events-auto"
+                      : "opacity-0 -translate-y-2 pointer-events-none",
                   ].join(" ")}
+                  style={{ willChange: 'opacity, transform' }}
                 >
-                  {/* Motion wrapper handles opacity/blur/translate-Y */}
-                  <div
-                    className={[
-                      "px-2", // tiny pad so blur doesn't clip
-                      "transform transition duration-150 ease-out",
-                      isOpen ? "opacity-100 blur-0 translate-y-0" : "opacity-0 blur-[2px] -translate-y-2",
-                    ].join(" ")}
-                    style={{ willChange: 'opacity, filter, transform' }}
-                  >
-                    <p className="mt-2 text-[0.8rem] md:text-[0.9rem] leading-relaxed text-white/80 text-center">
-                      {s.copy}
-                    </p>
-                  </div>
+                  <p className="mt-2 text-[0.8rem] md:text-[0.9rem] leading-relaxed text-white/80">
+                    {s.copy}
+                  </p>
                 </div>
               </div>
             );
