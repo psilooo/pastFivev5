@@ -196,17 +196,17 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="mt-16 pt-8 border-t border-white/10 relative z-30">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="font-courier text-xs opacity-60">
+      {/* Footer (fixed, static) */}
+      <footer className="fixed bottom-0 left-0 w-full z-30 bg-black/40 backdrop-blur-md border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+          <p className="font-courier text-xs opacity-70">
             © 2025 PASTFIVE. ALL RIGHTS RESERVED.
           </p>
-          <p className="font-courier text-xs opacity-60">
+          <p className="font-courier text-xs opacity-70">
             DESIGNED WITH CHAOS BY PSILO
           </p>
         </div>
-      </div>
+      </footer>
     </section>
   );
 };
