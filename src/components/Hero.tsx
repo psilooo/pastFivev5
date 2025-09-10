@@ -13,25 +13,25 @@ const Hero: React.FC = () => {
       id: 'creative',
       label: '[ CREATIVE DIRECTION ]',
       copy:
-        "We don’t follow trends — we make them. Full creative vision, from concept to cult status. Moodboards, aesthetics, and narratives that hit different.",
+        "We don’t follow trends... we make them. Full creative vision, from concept to cult status. Moodboards, aesthetics, and narratives that hit different.",
     },
     {
       id: 'graphic',
       label: '[ GRAPHIC DESIGN ]',
       copy:
-        "High-impact visuals, raw and unfiltered. Covers, flyers, merch — built to live in your head rent-free.",
+        "High-impact visuals, raw and unfiltered. Covers, flyers, logos, merch — built to live in your head rent-free.",
     },
     {
       id: 'motion',
       label: '[ MOTION GRAPHICS ]',
       copy:
-        "Loops that hypnotize. Glitch, grunge, and chaos made beautiful. Designed to make your audience stop scrolling.",
+        "Loops that hypnotize. Effects and chaos made beautiful. Designed to make your audience stop scrolling.",
     },
     {
       id: 'web',
       label: '[ WEB DESIGN ]',
       copy:
-        "Websites that bleed aesthetic. Minimal, dark, and heavy — built like a digital archive, not a template. Every pixel screams underground luxury. Responsive, fast, unforgettable — web design on vamp mode.",
+        "Websites that bleed aesthetic. Minimal, modern, and sleek. Each one built like a digital archive, not a template. Responsive, fast, and unforgettable.",
     },
   ];
 
