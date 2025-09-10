@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Dark overlay - Above video, below content */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black to-black opacity-70 pointer-events-none z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black to-black opacity-40 pointer-events-none z-10" />
       
       {/* Animated background lines - Above overlay */}
       <div className="absolute inset-0 z-20">
