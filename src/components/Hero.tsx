@@ -48,7 +48,7 @@ const Hero: React.FC = () => {
   const toggle = (id: string) => setOpenId(prev => (prev === id ? null : id));
 
   return (
-    <section className="min-h-screen flex flex-col justify-start items-center pt-28 md:pt-36 relative overflow-hidden">
+    <section className="fixed-section-height flex flex-col justify-start items-center pt-[112px] relative overflow-hidden">
       {/* Video Background - Lowest layer */}
       <div className="absolute inset-0 z-11">
         <video
@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
           <img
             src={logoUrl}
             alt="Company Logo"
-            className={`w-auto h-24 md:h-36 lg:h-48 xl:h-60 invert transition-all duration-300 ${
+            className={`fixed-logo invert transition-all duration-300 ${
               glitchActive ? 'logo-glitch' : ''
             }`}
             style={{
@@ -130,11 +130,11 @@ const Hero: React.FC = () => {
         </div>
 
         {/* CLICKABLE / EXPANDABLE SERVICES */}
-        <div className="font-courier text-xs md:text-sm space-y-4 text-center w-full">
+        <div className="font-courier fixed-text-small space-y-4 text-center w-full fixed-container">
           {services.map((s) => {
             const isOpen = openId === s.id;
             return (
-              <div key={s.id} className="max-w-xl mx-auto">
+              <div key={s.id} className="fixed-container">
                 {/* Title */}
                 <button
                   onClick={() => setOpenId(prev => (prev === s.id ? null : s.id))}
@@ -174,7 +174,7 @@ const Hero: React.FC = () => {
                     isOpen ? "max-h-56 opacity-100 blur-0 translate-y-0" : "max-h-0 opacity-0 blur-[2px] -translate-y-1",
                   ].join(" ")}
                 >
-                  <p className="mt-2 text-[0.8rem] md:text-[0.9rem] leading-relaxed text-white/80 text-center">
+                  <p className="mt-2 fixed-text-small text-white/80 text-center">
                     {s.copy}
                   </p>
                 </div>
@@ -198,7 +198,7 @@ const Hero: React.FC = () => {
 
       {/* Footer (fixed, static) */}
       <footer className="fixed bottom-0 left-0 w-full z-30 bg-black/40 backdrop-blur-md border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+        <div className="fixed-container px-4 py-4 flex flex-row justify-between items-center">
           <p className="font-courier text-xs opacity-70">
             © 2025 PASTFIVE. ALL RIGHTS RESERVED.
           </p>
