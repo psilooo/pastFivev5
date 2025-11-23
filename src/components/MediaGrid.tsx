@@ -18,7 +18,7 @@ const MediaGrid: React.FC<MediaGridProps> = ({ items, onItemClick }) => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+    <div className="grid grid-cols-3 gap-4">
   {items.map((item, index) => (
     <div
       key={item.id}
@@ -50,14 +50,14 @@ const MediaGrid: React.FC<MediaGridProps> = ({ items, onItemClick }) => {
         <div className={`absolute bottom-0 left-0 right-0 p-4 transform transition-all duration-500 ${
           hoveredId === item.id ? 'translate-y-0' : 'translate-y-full'
         }`}>
-          <h3 className="font-courier text-sm md:text-base">{item.title}</h3>
+          <h3 className="font-courier text-[14px]">{item.title}</h3>
           <p className="font-courier text-xs opacity-60 mt-1">
             {item.type === 'video' ? 'MOTION' : 'VISUAL'}
           </p>
         </div>
       </div>
 
-      <div className="absolute top-4 left-4 font-courier text-xs opacity-60">
+      <div className="absolute top-4 left-4 font-courier text-[10px] opacity-60">
         {String(index + 1).padStart(3, '0')}
       </div>
     </div>

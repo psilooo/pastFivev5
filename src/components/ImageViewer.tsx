@@ -15,14 +15,14 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ url, title }) => {
       <div className="relative bg-black p-[5px]">
         {!imageLoaded && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="font-courier text-sm animate-pulse">LOADING...</div>
+            <div className="font-courier text-[14px] animate-pulse">LOADING...</div>
           </div>
         )}
 
         <img
           src={url}
           alt={title}
-          className={`max-w-[90vw] max-h-[80vh] w-auto h-auto transition-opacity duration-500 ${
+          className={`w-[800px] h-[600px] transition-opacity duration-500 ${
             imageLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           onLoad={() => setImageLoaded(true)}
@@ -31,7 +31,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ url, title }) => {
 
         {/* Title overlay */}
         <div className="absolute bottom-[5px] left-[5px] right-[5px] p-4 bg-gradient-to-t from-black/80 to-transparent">
-          <h3 className="font-courier text-sm">{title}</h3>
+          <h3 className="font-courier text-[14px]">{title}</h3>
           <p className="font-courier text-xs opacity-60 mt-1">VISUAL</p>
         </div>
 
