@@ -48,7 +48,7 @@ const Hero: React.FC = () => {
   const toggle = (id: string) => setOpenId(prev => (prev === id ? null : id));
 
   return (
-    <section className="min-h-screen flex flex-col justify-start items-center pt-28 md:pt-36 relative overflow-hidden">
+    <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden">
       {/* Video Background - Lowest layer */}
       <div className="absolute inset-0 z-11">
         <video
@@ -197,12 +197,12 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Footer (fixed, static) */}
-      <footer className="fixed bottom-0 left-0 w-full z-30 bg-black/40 backdrop-blur-md border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-          <p className="font-courier text-xs opacity-70">
+      <footer className="fixed bottom-0 left-0 w-full z-30 bg-black/40 backdrop-blur-md border-t border-white/10 zoom-footer-height flex items-center">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0 w-full">
+          <p className="font-courier zoom-text-xs opacity-70">
             © 2025 PASTFIVE. ALL RIGHTS RESERVED.
           </p>
-          <p className="font-courier text-xs opacity-70">
+          <p className="font-courier zoom-text-xs opacity-70">
             DESIGNED WITH CHAOS BY PSILO
           </p>
         </div>

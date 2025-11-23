@@ -54,7 +54,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen pt-24 pb-16 px-4 md:px-8">
+    <section className="min-h-screen flex items-center justify-center px-4 md:px-8">
       <div className="max-w-4xl mx-auto">
         <h2 className="font-bebas text-6xl md:text-8xl mb-12 glitch-text" data-text="CONTACT">
           CONTACT
@@ -152,12 +152,12 @@ const Contact: React.FC = () => {
       </div>
 
       {/* Footer (fixed, static) */}
-      <footer className="fixed bottom-0 left-0 w-full z-30 bg-black/40 backdrop-blur-md border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-          <p className="font-courier text-xs opacity-70">
+      <footer className="fixed bottom-0 left-0 w-full z-30 bg-black/40 backdrop-blur-md border-t border-white/10 zoom-footer-height flex items-center">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0 w-full">
+          <p className="font-courier zoom-text-xs opacity-70">
             © 2025 PASTFIVE. ALL RIGHTS RESERVED.
           </p>
-          <p className="font-courier text-xs opacity-70">
+          <p className="font-courier zoom-text-xs opacity-70">
             DESIGNED WITH CHAOS BY PSILO
           </p>
         </div>
