@@ -309,4 +309,37 @@
     pointer-events: none;
     z-index: 9998;
   }
+
+  /* Minimum text size utilities to prevent shrinking too much */
+  .min-text-xs {
+    font-size: clamp(0.625rem, 0.75rem, 0.75rem);
+  }
+
+  .min-text-sm {
+    font-size: clamp(0.75rem, 0.875rem, 0.875rem);
+  }
+
+  .min-text-base {
+    font-size: clamp(0.875rem, 1rem, 1rem);
+  }
+
+  .min-text-lg {
+    font-size: clamp(1rem, 1.125rem, 1.125rem);
+  }
+
+  .min-text-xl {
+    font-size: clamp(1.125rem, 1.25rem, 1.25rem);
+  }
+
+  .min-text-2xl {
+    font-size: clamp(1.25rem, 1.5rem, 1.5rem);
+  }
+
+  .min-text-3xl {
+    font-size: clamp(1.5rem, 1.875rem, 1.875rem);
+  }
+
+  .min-text-4xl {
+    font-size: clamp(1.875rem, 2.25rem, 2.25rem);
+  }
 }
