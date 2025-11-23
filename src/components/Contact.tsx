@@ -54,7 +54,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen pt-24 pb-16 px-4 md:px-8">
+    <section className="min-h-screen flex flex-col justify-center items-center px-4 md:px-8">
       <div className="max-w-4xl mx-auto">
         <h2 className="font-bebas text-6xl md:text-8xl mb-12 glitch-text" data-text="CONTACT">
           CONTACT
