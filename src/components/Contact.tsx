@@ -54,16 +54,16 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center px-4 md:px-8">
+    <section className="fixed-container flex flex-col justify-center items-center px-4 md:px-8">
       <div className="max-w-4xl mx-auto">
-        <h2 className="font-bebas text-6xl md:text-8xl mb-12 glitch-text" data-text="CONTACT">
+        <h2 className="font-bebas mb-12 glitch-text" style={{ fontSize: 'calc(8 * var(--fixed-vmin))' }} data-text="CONTACT">
           CONTACT
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Contact Form */}
           <div className="border border-white/20 p-8">
-            <h3 className="font-bebas text-2xl mb-6">SEND MESSAGE</h3>
+            <h3 className="font-bebas mb-6" style={{ fontSize: 'calc(2.5 * var(--fixed-vmin))' }}>SEND MESSAGE</h3>
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               {/* Honeypot (spam trap) */}
               <input
@@ -81,7 +81,8 @@ const Contact: React.FC = () => {
                   placeholder="NAME"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-transparent border border-white/20 p-3 font-courier text-sm focus:border-white/50 outline-none transition-all duration-300"
+                  className="w-full bg-transparent border border-white/20 p-3 font-courier focus:border-white/50 outline-none transition-all duration-300"
+                  style={{ fontSize: 'calc(1 * var(--fixed-vmin))' }}
                   required
                 />
               </div>
@@ -92,7 +93,8 @@ const Contact: React.FC = () => {
                   placeholder="EMAIL"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-transparent border border-white/20 p-3 font-courier text-sm focus:border-white/50 outline-none transition-all duration-300"
+                  className="w-full bg-transparent border border-white/20 p-3 font-courier focus:border-white/50 outline-none transition-all duration-300"
+                  style={{ fontSize: 'calc(1 * var(--fixed-vmin))' }}
                   required
                 />
               </div>
@@ -103,14 +105,16 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={5}
-                  className="w-full bg-transparent border border-white/20 p-3 font-courier text-sm focus:border-white/50 outline-none transition-all duration-300 resize-none"
+                  className="w-full bg-transparent border border-white/20 p-3 font-courier focus:border-white/50 outline-none transition-all duration-300 resize-none"
+                  style={{ fontSize: 'calc(1 * var(--fixed-vmin))' }}
                   required
                 />
               </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full border border-white/20 p-3 font-courier text-sm hover:bg-white hover:text-black transition-all duration-300 disabled:opacity-50 flex items-center justify-center space-x-2"
+                className="w-full border border-white/20 p-3 font-courier hover:bg-white hover:text-black transition-all duration-300 disabled:opacity-50 flex items-center justify-center space-x-2"
+                style={{ fontSize: 'calc(1 * var(--fixed-vmin))' }}
               >
                 <span>{isSubmitting ? 'SENDING...' : 'SEND'}</span>
                 <Send className="w-4 h-4" />
@@ -133,16 +137,16 @@ const Contact: React.FC = () => {
           {/* Contact Info */}
           <div className="space-y-4">
             <div className="border border-white/20 p-6 hover:border-white/50 transition-all duration-500">
-              <h3 className="font-bebas text-xl mb-2">EMAIL</h3>
-              <a href="mailto:contact@portfolio.com" className="font-courier text-sm opacity-60 hover:opacity-100 transition-opacity flex items-center space-x-2">
+              <h3 className="font-bebas mb-2" style={{ fontSize: 'calc(1.8 * var(--fixed-vmin))' }}>EMAIL</h3>
+              <a href="mailto:contact@portfolio.com" className="font-courier opacity-60 hover:opacity-100 transition-opacity flex items-center space-x-2" style={{ fontSize: 'calc(1 * var(--fixed-vmin))' }}>
                 <Mail className="w-4 h-4" />
                 <span>contact@pastfivestudios.com</span>
               </a>
             </div>
 
             <div className="border border-white/20 p-6 hover:border-white/50 transition-all duration-500">
-              <h3 className="font-bebas text-xl mb-2">LOCATION</h3>
-              <p className="font-courier text-sm opacity-60">
+              <h3 className="font-bebas mb-2" style={{ fontSize: 'calc(1.8 * var(--fixed-vmin))' }}>LOCATION</h3>
+              <p className="font-courier opacity-60" style={{ fontSize: 'calc(1 * var(--fixed-vmin))' }}>
                 WORLDWIDE<br />
                 24/7 ONLINE
               </p>

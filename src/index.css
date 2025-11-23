@@ -5,6 +5,20 @@
 @layer base {
   body {
     @apply bg-black text-white overflow-x-hidden;
+
+    /* Fixed viewport units that don't scale with zoom */
+    --fixed-vw: 1vw;
+    --fixed-vh: 1vh;
+    --fixed-vmin: 1vmin;
+    --fixed-vmax: 1vmax;
+  }
+
+  /* Force browser to use actual viewport units */
+  @supports (height: 100dvh) {
+    :root {
+      --fixed-vh: 1dvh;
+      --fixed-vw: 1dvw;
+    }
   }
   
   ::selection {
@@ -308,5 +322,49 @@
     );
     pointer-events: none;
     z-index: 9998;
+  }
+
+  /* Fixed sizing utilities */
+  .fixed-container {
+    width: calc(100 * var(--fixed-vw));
+    height: calc(100 * var(--fixed-vh));
+    min-height: calc(100 * var(--fixed-vh));
+  }
+
+  .fixed-text-xl {
+    font-size: calc(3.5 * var(--fixed-vmin));
+    line-height: 1.2;
+  }
+
+  .fixed-text-lg {
+    font-size: calc(2.5 * var(--fixed-vmin));
+    line-height: 1.2;
+  }
+
+  .fixed-text-base {
+    font-size: calc(1.5 * var(--fixed-vmin));
+    line-height: 1.4;
+  }
+
+  .fixed-text-sm {
+    font-size: calc(1 * var(--fixed-vmin));
+    line-height: 1.4;
+  }
+
+  .fixed-text-xs {
+    font-size: calc(0.75 * var(--fixed-vmin));
+    line-height: 1.4;
+  }
+
+  .fixed-spacing-lg {
+    margin-bottom: calc(4 * var(--fixed-vmin));
+  }
+
+  .fixed-spacing-md {
+    margin-bottom: calc(2 * var(--fixed-vmin));
+  }
+
+  .fixed-spacing-sm {
+    margin-bottom: calc(1 * var(--fixed-vmin));
   }
 }

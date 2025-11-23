@@ -505,9 +505,9 @@ function App() {
       {currentSection === 'home' && <Hero />}
       
       {currentSection === 'work' && (
-        <section id="work" className="min-h-screen flex flex-col justify-center items-center pt-24 pb-16 px-4 md:px-8">
+        <section id="work" className="fixed-container flex flex-col justify-center items-center pt-24 pb-16 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
-            <h2 className="font-bebas text-6xl md:text-8xl mb-16 glitch-text" data-text="WORK">
+            <h2 className="font-bebas mb-16 glitch-text" style={{ fontSize: 'calc(8 * var(--fixed-vmin))' }} data-text="WORK">
               WORK
             </h2>
             

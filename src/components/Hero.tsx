@@ -48,7 +48,7 @@ const Hero: React.FC = () => {
   const toggle = (id: string) => setOpenId(prev => (prev === id ? null : id));
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden">
+    <section className="fixed-container flex flex-col justify-center items-center relative overflow-hidden">
       {/* Video Background - Lowest layer */}
       <div className="absolute inset-0 z-11">
         <video
@@ -89,10 +89,12 @@ const Hero: React.FC = () => {
           <img
             src={logoUrl}
             alt="Company Logo"
-            className={`w-auto h-24 md:h-36 lg:h-48 xl:h-60 invert transition-all duration-300 ${
+            className={`w-auto invert transition-all duration-300 ${
               glitchActive ? 'logo-glitch' : ''
             }`}
             style={{
+              height: 'calc(15 * var(--fixed-vmin))',
+              maxHeight: '240px',
               backgroundImage: `url(${logoUrl})`,
               backgroundSize: 'contain',
               backgroundRepeat: 'no-repeat',
@@ -130,7 +132,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* CLICKABLE / EXPANDABLE SERVICES */}
-        <div className="font-courier text-xs md:text-sm space-y-4 text-center w-full">
+        <div className="font-courier fixed-text-xs space-y-4 text-center w-full">
           {services.map((s) => {
             const isOpen = openId === s.id;
             return (
@@ -174,7 +176,7 @@ const Hero: React.FC = () => {
                     isOpen ? "max-h-56 opacity-100 blur-0 translate-y-0" : "max-h-0 opacity-0 blur-[2px] -translate-y-1",
                   ].join(" ")}
                 >
-                  <p className="mt-2 text-[0.8rem] md:text-[0.9rem] leading-relaxed text-white/80 text-center">
+                  <p className="mt-2 text-white/80 text-center" style={{ fontSize: 'calc(0.8 * var(--fixed-vmin))', lineHeight: '1.4' }}>
                     {s.copy}
                   </p>
                 </div>
@@ -185,11 +187,11 @@ const Hero: React.FC = () => {
 
 
         <div className="mt-12 flex items-center justify-center space-x-8">
-          <div className="text-xs font-courier">
+          <div className="font-courier" style={{ fontSize: 'calc(0.75 * var(--fixed-vmin))' }}>
             <span className="opacity-60">STATUS:</span>
             <span className="ml-2 text-white animate-pulse">ONLINE</span>
           </div>
-          <div className="text-xs font-courier">
+          <div className="font-courier" style={{ fontSize: 'calc(0.75 * var(--fixed-vmin))' }}>
             <span className="opacity-60">VERSION:</span>
             <span className="ml-2">2.0.25</span>
           </div>
