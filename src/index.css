@@ -310,36 +310,45 @@
     z-index: 9998;
   }
 
-  /* Minimum text size utilities to prevent shrinking too much */
-  .min-text-xs {
-    font-size: clamp(0.625rem, 0.75rem, 0.75rem);
+  /* Zoom-resistant header/footer text sizes - only changes after ~2x zoom */
+  .zoom-text-xs {
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
   }
 
-  .min-text-sm {
-    font-size: clamp(0.75rem, 0.875rem, 0.875rem);
+  .zoom-text-sm {
+    font-size: clamp(0.875rem, 2.25vw, 1rem);
   }
 
-  .min-text-base {
-    font-size: clamp(0.875rem, 1rem, 1rem);
+  .zoom-text-base {
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
   }
 
-  .min-text-lg {
-    font-size: clamp(1rem, 1.125rem, 1.125rem);
+  .zoom-text-lg {
+    font-size: clamp(1.125rem, 2.75vw, 1.25rem);
   }
 
-  .min-text-xl {
-    font-size: clamp(1.125rem, 1.25rem, 1.25rem);
+  .zoom-text-xl {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
   }
 
-  .min-text-2xl {
-    font-size: clamp(1.25rem, 1.5rem, 1.5rem);
+  .zoom-text-2xl {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
   }
 
-  .min-text-3xl {
-    font-size: clamp(1.5rem, 1.875rem, 1.875rem);
+  .zoom-text-3xl {
+    font-size: clamp(1.875rem, 4vw, 2.5rem);
   }
 
-  .min-text-4xl {
-    font-size: clamp(1.875rem, 2.25rem, 2.25rem);
+  .zoom-text-4xl {
+    font-size: clamp(2.25rem, 4.5vw, 3rem);
+  }
+
+  /* Fixed header/footer heights that resist zoom */
+  .zoom-header-height {
+    height: clamp(80px, 8vw, 96px);
+  }
+
+  .zoom-footer-height {
+    min-height: clamp(60px, 6vw, 72px);
   }
 }
