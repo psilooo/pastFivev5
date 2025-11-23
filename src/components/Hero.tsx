@@ -48,7 +48,7 @@ const Hero: React.FC = () => {
   const toggle = (id: string) => setOpenId(prev => (prev === id ? null : id));
 
   return (
-    <section className="min-h-screen flex flex-col justify-start items-center pt-28 md:pt-36 relative overflow-hidden">
+    <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden">
       {/* Video Background - Lowest layer */}
       <div className="absolute inset-0 z-11">
         <video
