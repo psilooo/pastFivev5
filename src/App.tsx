@@ -505,7 +505,7 @@ function App() {
       {currentSection === 'home' && <Hero />}
       
       {currentSection === 'work' && (
-        <section id="work" className="min-h-screen pt-24 pb-16 px-4 md:px-8">
+        <section id="work" className="min-h-screen flex flex-col justify-center items-center px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <h2 className="font-bebas text-6xl md:text-8xl mb-16 glitch-text" data-text="WORK">
               WORK
